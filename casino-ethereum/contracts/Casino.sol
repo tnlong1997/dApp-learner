@@ -1,4 +1,4 @@
-pragma solidity 0.4.20;
+pragma solidity 0.4.24;
 
 contract Casino {
 	address public owner;
@@ -6,7 +6,7 @@ contract Casino {
 	uint256 public totalBet;
 	uint256 public numberOfBets;
 	uint256 public maxAmountOfBets = 100;
-	address[] public player;
+	address[] public players;
 
 	struct Player {
 		uint256 amountBet;
