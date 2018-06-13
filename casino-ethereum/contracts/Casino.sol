@@ -16,6 +16,8 @@ contract Casino {
 	// The address of the player and => the user info
 	mapping(address => Player) public playerInfo;
 
+	function() public payable {}
+
 	function Casino(uint256 _minimumBet) public {
 		owner = msg.sender;
 		if (_minimumBet != 0) minimumBet = _minimumBet;
@@ -66,7 +68,7 @@ contract Casino {
 			}
 			delete playerInfo[playerAddress]; // Delete all the players
 		}
-		
+
 		players.length = 0; // Delete all the players array
 		uint256 winnerEtherAmount = totalBet / winners.length; // How much each winner gets
 		for (uint256 j = 0; j < count; j++) {
@@ -74,5 +76,13 @@ contract Casino {
 				winners[j].transfer(winnerEtherAmount);
 			}
 		}
+
+		resetData();
+	}
+
+	function resetData() {
+		players.length = 0; // Delete all the players array
+		totalBet = 0;
+		numberOfBets = 0;
 	}
 }
